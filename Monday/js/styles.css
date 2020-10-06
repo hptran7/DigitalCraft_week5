@@ -1,0 +1,23 @@
+.card-img-top{
+    width: 50%;
+}
+#factUL{
+    display: flex;
+}
+#searchTitle{
+    width: 500px;
+}
+#searchSection{
+    position: absolute;
+    left: 35%;
+    padding:0,0,50px,0
+}
+#info{
+    position: absolute;
+    top:10%
+}
+#detailInfo{
+    position: absolute;
+    top: 70%;
+    left: 40%;
+}
