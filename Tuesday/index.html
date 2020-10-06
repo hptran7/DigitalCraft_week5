@@ -5,7 +5,7 @@
     </head>
     <body>
 
-        <form>
+
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
               <input type="email" class="form-control" id="nameTextBox"">
@@ -15,11 +15,17 @@
               <input type="text" class="form-control" id="coffeeNameTextBox">
             </div>
             <button type="submit" class="btn btn-primary"id ="placeOrderButton">Submit</button>
-          </form>
+
           
         </div>
+        <div id="searchOrder" class="form-group">
+            <label>Search Order By Email:</label>
+            <input type="Text" id ="emailSearch"></input>
+            <button type="submit" class="btn btn-primary"id ="searchButton">Search</button>
+            <button type="submit" class="btn btn-primary"id ="deleteButton">Delete</button>
+        </div>
         <div>
-        <h3>Orders In Processing</h3>
+        <h5>Orders In Processing</h5>
         <ul id="currentOrders" class ="list-group">
 
         </ul>

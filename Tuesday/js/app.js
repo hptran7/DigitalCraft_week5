@@ -2,6 +2,9 @@ let emailTB = document.getElementById("nameTextBox");
 let coffeeNameTB = document.getElementById("coffeeNameTextBox");
 let placeOrderButton = document.getElementById("placeOrderButton");
 let ordersTable = document.getElementById("currentOrders");
+let searchButton = document.getElementById("searchButton")
+let emailSearchTB = document.getElementById("emailSearch")
+let deleteButton = document.getElementById("deleteButton")
 
 function displayDetail(ordersObject) {
   let fullOrders = [];
@@ -13,6 +16,14 @@ function displayDetail(ordersObject) {
     fullOrders.push(detail);
   }
   return fullOrders;
+}
+
+function displaySearchOrder(orderObject){
+  let detail =`<li class="list-group-item list-group-item-light">
+  <label> Email: ${orderObject.emailAddress}</labe>
+  <p>Coffee:  ${orderObject.coffee}</p>
+  </li>`
+  return detail
 }
 
 function displayOrders() {
@@ -44,6 +55,7 @@ placeOrderButton.addEventListener("click", () => {
   request.setRequestHeader("Content-Type", "application/json");
 
   request.send(JSON.stringify(requestObject));
+  displayOrders()
 });
 
 placeOrderButton.addEventListener("click",()=>{
@@ -51,3 +63,33 @@ placeOrderButton.addEventListener("click",()=>{
 })
 
 displayOrders();
+
+searchButton.addEventListener("click", () => {
+  let searchEmail = emailSearchTB.value;
+  let urlLink = `https://dc-coffeerun.herokuapp.com/api/coffeeorders/${searchEmail}`
+  console.log(urlLink)
+
+  let request = new XMLHttpRequest();
+  request.open("GET", urlLink);
+
+  request.onload=function (){
+    let order = JSON.parse(this.responseText)
+    ordersTable.innerHTML = ""
+    let searchOrderDetail = displaySearchOrder(order)
+    ordersTable.insertAdjacentHTML("beforeend",searchOrderDetail)
+  }
+ 
+  request.send();
+});
+
+deleteButton.addEventListener("click", () => {
+  let searchEmail = emailSearchTB.value;
+  let urlLink = `https://dc-coffeerun.herokuapp.com/api/coffeeorders/${searchEmail}`
+  console.log(urlLink)
+
+  let request = new XMLHttpRequest();
+  request.open("DELETE",urlLink);
+
+ 
+  request.send();
+});
